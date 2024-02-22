@@ -3,15 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLAGS</title>
+    <link rel="stylesheet" href="./style.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <title>Country</title>
   </head>
   <body>
-    <div><box-icon type="solid" name="moon"></box-icon></div>
+    <header>
+      <div class="container">
+        <nav>
+          <p>Where in the world?</p>
+          <button id="dark-btn">
+            <i class="bx bx-moon"></i>
+            Dark Mode
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="search-wrapper">
+            <i class="bx bx-search-alt-2"></i>
+            <input
+              type="search"
+              placeholder="Search for a country…"
+              id="flag-searching"
+            />
+            <select id="select-flag">
+              <option value="Africa">Africa</option>
+              <option value="America">America</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+            </select>
+          </div>
+          <div id="card-flag"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./utils.js"></script>
+    <script src="./index.js"></script>
   </body>
-  <script src="index.js"></script>
-  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </html>
