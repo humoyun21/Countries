@@ -5,7 +5,6 @@ let cardFlag = $("#card-flag");
 let searchFlag = $("#search-flag");
 let selectFlag = $("#select-flag");
 let body = $("body");
-let darkbtn = $("#dark-btn");
 
 // functions
 function getData() {
