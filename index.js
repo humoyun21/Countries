@@ -1,12 +1,11 @@
 "use strict";
 
-// variables
-let cardFlag = $("#card-flag");
+let flagWrapper = $("#flags-wrapper");
 let searchFlag = $("#search-flag");
 let selectFlag = $("#select-flag");
 let body = $("body");
+let darkbtn = $("#dark-btn");
 
-// functions
 function getData() {
   let url = "https://restcountries.com/v2/all";
   return fetch(url)
@@ -29,15 +28,15 @@ function renderFlags(data) {
                 </div>
             `;
 
-      cardFlag.appendChild(flag_card);
+      flagWrapper.appendChild(flag_card);
     });
   } else {
-    cardFlag.innerHTML = "NOT FOUND";
+    flagWrapper.innerHTML = "NOT FOUND";
   }
 }
 
 function searchRenderData(data) {
-  cardFlag.innerHTML = "";
+  flagWrapper.innerHTML = "";
   if (data.length > 0) {
     data.forEach((el) => {
       let flag_card = createElement("div", "card");
@@ -51,7 +50,7 @@ function searchRenderData(data) {
                 </div>
             `;
 
-      cardFlag.appendChild(flag_card);
+      flagWrapper.appendChild(flag_card);
     });
   }
 }
@@ -71,6 +70,23 @@ function sortOptionFlag(data, name) {
     )
   );
 }
+
+function darkMode() {
+  body.classList.toggle("dark-Mode");
+}
+
+searchFlag.addEventListener("keyup", (e) => {
+  let search = e.target.value.toLowerCase();
+  searchFlags(dataFlags, search);
+});
+
+selectFlag.addEventListener("change", (el) => {
+  sortOptionFlag(dataFlags, selectFlag.value.toLowerCase());
+});
+
+darkbtn.addEventListener("click", () => {
+  darkMode();
+});
 
 const dataFlags = getData();
 dataFlags.then(renderFlags);
