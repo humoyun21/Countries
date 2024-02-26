@@ -6,7 +6,7 @@ let selectFlag = $("#select-flag");
 let body = $("body");
 let darkbtn = $("#dark-btn");
 
-function getData() {
+async function getData() {
   let url = "https://restcountries.com/v2/all";
   return fetch(url)
     .then((response) => response.json())
@@ -27,7 +27,7 @@ function renderFlags(data) {
                     <p><span>Capital: </span>${el.capital}</p>
                 </div>
             `;
-
+      flag_card.dataset.country = el.name;
       flagWrapper.appendChild(flag_card);
     });
   } else {
@@ -49,7 +49,7 @@ function searchRenderData(data) {
                     <p><span>Capital: </span>${el.capital}</p>
                 </div>
             `;
-
+      flag_card.dataset.country = el.name;
       flagWrapper.appendChild(flag_card);
     });
   }
@@ -90,3 +90,17 @@ darkbtn.addEventListener("click", () => {
 
 const dataFlags = getData();
 dataFlags.then(renderFlags);
+
+flagWrapper.addEventListener("click", (e) => {
+  if (
+    e.target.parentNode.classList.contains("card") ||
+    e.target.parentNode.classList.contains("card-body")
+  ) {
+    let data = e.target.parentNode.getAttribute("data-country");
+    localStorage.setItem("data-country", data);
+
+    if (localStorage.getItem("data-country")) {
+      window.location.href = "./country.html";
+    }
+  }
+});
